@@ -1,5 +1,43 @@
 
 import React from 'react';
+import useScrollAnimation from '../hooks/useScrollAnimation';
+
+const ProjectCard = ({ project, index }) => {
+    const [ref, isVisible] = useScrollAnimation(0.1);
+
+    return (
+        <div
+            ref={ref}
+            className={`glass-card project-card scroll-hidden ${isVisible ? 'scroll-visible' : ''}`}
+            style={{ transitionDelay: `${index * 0.1}s` }}
+        >
+            <div className="project-icon" style={{ backgroundColor: project.bgColor }}>
+                {project.iconEmoji}
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
+                    <h3 style={{ fontSize: '20px', fontWeight: 600, fontFamily: 'var(--font-serif)', margin: 0 }}>
+                        {project.name}
+                    </h3>
+                    <span style={{
+                        fontSize: '12px',
+                        fontWeight: 600,
+                        opacity: 0.6,
+                        border: '1px solid currentColor',
+                        padding: '4px 8px',
+                        borderRadius: '12px'
+                    }}>
+                        {project.year}
+                    </span>
+                </div>
+                <p style={{ fontSize: '15px', color: 'var(--text-secondary)', margin: 0 }}>
+                    {project.desc}
+                </p>
+            </div>
+        </div>
+    );
+};
 
 const Work = () => {
     const projects = [
@@ -8,7 +46,7 @@ const Work = () => {
             name: 'MEA Platform',
             desc: 'Prototype Analyst',
             iconEmoji: '🚀',
-            bgColor: '#e0f7fa',
+            bgColor: 'rgba(224, 247, 250, 0.5)',
             year: 'Present'
         },
         {
@@ -16,7 +54,7 @@ const Work = () => {
             name: 'AI Foundation',
             desc: 'AI Dev Analyst',
             iconEmoji: '🤖',
-            bgColor: '#f3e5f5',
+            bgColor: 'rgba(243, 229, 245, 0.5)',
             year: '2023'
         },
         {
@@ -24,7 +62,7 @@ const Work = () => {
             name: 'Simplilearn',
             desc: 'Success Manager',
             iconEmoji: '🎓',
-            bgColor: '#e8f5e9',
+            bgColor: 'rgba(232, 245, 233, 0.5)',
             year: '2023'
         },
         {
@@ -32,7 +70,7 @@ const Work = () => {
             name: 'Ecoenergy',
             desc: 'Project Engineer',
             iconEmoji: '⚡',
-            bgColor: '#fff3e0',
+            bgColor: 'rgba(255, 243, 224, 0.5)',
             year: '2022'
         },
         {
@@ -40,90 +78,35 @@ const Work = () => {
             name: 'Abstraction',
             desc: 'SDE Intern',
             iconEmoji: '💻',
-            bgColor: '#e3f2fd',
+            bgColor: 'rgba(227, 242, 253, 0.5)',
             year: '2022'
         }
     ];
 
+    const [headerRef, isHeaderVisible] = useScrollAnimation(0.1);
+
     const headerStyles = {
-        marginBottom: '48px',
+        marginBottom: '64px',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'baseline',
     };
 
-    const cardContainerStyles = {
-        position: 'relative',
-        cursor: 'pointer',
-        transition: 'transform 0.3s ease',
-    };
-
-    const iconStyles = {
-        width: '100%',
-        aspectRatio: '1/1',
-        borderRadius: '24px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: '64px',
-        marginBottom: '16px',
-        boxShadow: '0 4px 20px rgba(0,0,0,0.04)',
-        border: '1px solid var(--border-soft)',
-    };
-
-    const infoStyles = {
-        display: 'flex',
-        flexDirection: 'column',
-    };
-
-    const titleStyles = {
-        fontSize: '18px',
-        fontWeight: 600,
-        fontFamily: 'var(--font-serif)',
-        marginBottom: '4px',
-    };
-
-    const metaStyles = {
-        fontSize: '14px',
-        color: 'var(--text-secondary)',
-    };
-
     return (
         <section id="work" className="container section-padding">
-            <div style={headerStyles}>
-                <h2 style={{ fontSize: '32px' }}>Selected Work</h2>
-                {/* <a href="#" style={{ fontSize: '14px', color: 'var(--text-secondary)' }}>View All</a> */}
+            <div
+                ref={headerRef}
+                style={headerStyles}
+                className={`scroll-hidden ${isHeaderVisible ? 'scroll-visible' : ''}`}
+            >
+                <h2 style={{ fontSize: 'clamp(32px, 5vw, 48px)' }}>Selected Work</h2>
             </div>
 
             <div className="work-grid">
-                {projects.map((project) => (
-                    <div
-                        key={project.id}
-                        style={cardContainerStyles}
-                        className="project-card"
-                    >
-                        <div style={{ ...iconStyles, backgroundColor: project.bgColor }}>
-                            {project.iconEmoji}
-                        </div>
-
-                        <div style={infoStyles}>
-                            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                <h3 style={titleStyles}>{project.name}</h3>
-                                <span style={{ fontSize: '12px', fontWeight: 600, opacity: 0.5, border: '1px solid currentColor', padding: '2px 6px', borderRadius: '12px' }}>
-                                    {project.year}
-                                </span>
-                            </div>
-                            <p style={metaStyles}>{project.desc}</p>
-                        </div>
-                    </div>
+                {projects.map((project, index) => (
+                    <ProjectCard key={project.id} project={project} index={index} />
                 ))}
             </div>
-
-            <style>{`
-        .project-card:hover {
-          transform: translateY(-8px);
-        }
-      `}</style>
         </section>
     );
 };

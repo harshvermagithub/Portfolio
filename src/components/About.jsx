@@ -1,13 +1,37 @@
 import React from 'react';
 import resumePdf from '../assets/Harsh-Resume.pdf';
+import useScrollAnimation from '../hooks/useScrollAnimation';
+
+const ExpertiseItem = ({ text, index }) => {
+    const [ref, isVisible] = useScrollAnimation(0.1);
+
+    return (
+        <li
+            ref={ref}
+            style={{
+                padding: '16px 0',
+                borderBottom: '1px solid var(--border-soft)',
+                display: 'flex',
+                justifyContent: 'space-between',
+                fontSize: '18px',
+                transitionDelay: `${index * 0.1}s`
+            }}
+            className={`scroll-hidden ${isVisible ? 'scroll-visible' : ''}`}
+        >
+            {text}
+        </li>
+    );
+};
 
 const About = () => {
+    const [headerRef, isHeaderVisible] = useScrollAnimation(0.1);
+    const [contentRef, isContentVisible] = useScrollAnimation(0.1);
+
     const styles = {
         section: {
             padding: '120px 0',
             borderTop: '1px solid var(--border-soft)',
         },
-        // Grid styles moved to index.css (.about-grid)
         heading: {
             fontSize: 'clamp(24px, 4vw, 32px)',
             marginBottom: '32px',
@@ -21,13 +45,6 @@ const About = () => {
         list: {
             listStyle: 'none',
             padding: 0,
-        },
-        listItem: {
-            padding: '16px 0',
-            borderBottom: '1px solid var(--border-soft)',
-            display: 'flex',
-            justifyContent: 'space-between',
-            fontSize: '18px',
         }
     };
 
@@ -42,16 +59,20 @@ const About = () => {
     return (
         <section id="about" className="container section-padding">
             <div className="about-grid">
-                <div>
+                <div ref={headerRef} className={`scroll-hidden ${isHeaderVisible ? 'scroll-visible' : ''}`}>
                     <h2 style={styles.heading}>About Me</h2>
                     <img
                         src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800"
                         alt="Portrait"
-                        style={{ width: '100%', borderRadius: '4px', filter: 'grayscale(100%)' }}
+                        style={{ width: '100%', borderRadius: '24px', filter: 'grayscale(100%)', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}
                     />
                 </div>
 
-                <div style={{ paddingTop: '64px' }}>
+                <div
+                    ref={contentRef}
+                    style={{ paddingTop: '64px' }}
+                    className={`scroll-hidden ${isContentVisible ? 'scroll-visible' : ''}`}
+                >
                     <p style={styles.bio}>
                         I am a Product Department Prototype Analyst with a background in Information Technology.
                         I transitioned to a founding member role, establishing vision and strategic direction for product-market fit.
@@ -79,9 +100,7 @@ const About = () => {
                     </h3>
                     <ul style={styles.list}>
                         {services.map((service, index) => (
-                            <li key={index} style={styles.listItem}>
-                                {service}
-                            </li>
+                            <ExpertiseItem key={index} text={service} index={index} />
                         ))}
                     </ul>
                 </div>

@@ -54,7 +54,13 @@
 }
 
 [data-theme='dark'] .nav-link:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: transparent;
+  /* Handled by pill */
+}
+
+[data-theme='dark'] .nav-pill {
+  background-color: #ffffff;
+  opacity: 0.15;
 }
 
 * {
@@ -165,7 +171,24 @@ img {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-up {
+  opacity: 0;
+  animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
   }
 
   to {
@@ -238,6 +261,126 @@ img {
   /* Removed border top */
 }
 
+/* Hero Card Deck */
+.hero-deck {
+  position: relative;
+  width: 800px;
+  /* Increased to 800px */
+  height: 440px;
+  /* Slightly taller */
+  margin: 60px auto 120px;
+  perspective: 1200px;
+}
+
+.hero-card {
+  position: absolute;
+  width: 40%;
+  /* Narrower relative width to fit more spread */
+  left: 30%;
+  /* Center cards */
+  height: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border: 4px solid var(--bg-primary);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-origin: center bottom;
+}
+
+.hero-deck:hover .hero-card {
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
+}
+
+/* Fan positioning (Desktop) */
+.hero-card:nth-child(1) {
+  transform: rotate(-12deg) translate(-200px, 30px) scale(0.9);
+  z-index: 1;
+}
+
+.hero-card:nth-child(2) {
+  transform: rotate(-6deg) translate(-100px, 10px) scale(0.95);
+  z-index: 2;
+}
+
+.hero-card:nth-child(3) {
+  transform: rotate(0deg) translate(0px, 0px) scale(1);
+  z-index: 3;
+}
+
+.hero-card:nth-child(4) {
+  transform: rotate(6deg) translate(100px, 10px) scale(0.95);
+  z-index: 2;
+}
+
+.hero-card:nth-child(5) {
+  transform: rotate(12deg) translate(200px, 30px) scale(0.9);
+  z-index: 1;
+}
+
+/* Hover Expansion Effect */
+.hero-deck:hover .hero-card:nth-child(1) {
+  transform: rotate(-20deg) translate(-340px, 60px) scale(0.9);
+}
+
+.hero-deck:hover .hero-card:nth-child(2) {
+  transform: rotate(-10deg) translate(-170px, 20px) scale(0.95);
+}
+
+.hero-deck:hover .hero-card:nth-child(3) {
+  transform: rotate(0deg) translate(0px, -40px) scale(1.05);
+}
+
+.hero-deck:hover .hero-card:nth-child(4) {
+  transform: rotate(10deg) translate(170px, 20px) scale(0.95);
+}
+
+.hero-deck:hover .hero-card:nth-child(5) {
+  transform: rotate(20deg) translate(340px, 60px) scale(0.9);
+}
+
+/* Floating Pills */
+.hero-pill {
+  position: absolute;
+  padding: 10px 24px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 14px;
+  z-index: 10;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  animation: float 4s ease-in-out infinite;
+}
+
+.hero-pill.blue {
+  background: #2563EB;
+  color: white;
+  top: -40px;
+  left: -80px;
+  --rot: -5deg;
+  animation-delay: 0s;
+}
+
+.hero-pill.white {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-soft);
+  top: -20px;
+  right: -80px;
+  --rot: 5deg;
+  animation-delay: 2s;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(var(--rot));
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(var(--rot));
+  }
+}
+
 /* Responsive Overrides */
 @media (max-width: 768px) {
 
@@ -274,4 +417,107 @@ img {
     padding: 0 24px;
     /* Ensure padding sticks on mobile */
   }
+
+  .hero-deck {
+    width: 260px;
+    height: 350px;
+    margin: 40px auto 80px;
+  }
+
+  .hero-card:nth-child(1) {
+    transform: rotate(-6deg) translate(-20px, 10px);
+  }
+
+  .hero-card:nth-child(2) {
+    transform: rotate(-3deg) translate(-10px, 5px);
+  }
+
+  .hero-card:nth-child(3) {
+    transform: rotate(0deg) translate(0px, 0px);
+  }
+
+  .hero-card:nth-child(4) {
+    transform: rotate(3deg) translate(10px, 5px);
+  }
+
+  .hero-card:nth-child(5) {
+    transform: rotate(6deg) translate(20px, 10px);
+  }
+
+  .hero-pill {
+    transform: scale(0.8);
+  }
+
+  .hero-pill.blue {
+    left: -20px;
+  }
+
+  .hero-pill.white {
+    right: -20px;
+  }
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    border-color: transparent;
+  }
+
+  50% {
+    border-color: var(--text-primary);
+  }
+}
+
+/* Glass Card Utility */
+.glass-card {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Project Card Specifics */
+.project-card {
+  border-radius: 24px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 280px;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  margin-bottom: 24px;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Scroll Animation Utility */
+.scroll-hidden {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-visible {
+  opacity: 1;
+  transform: translateY(0);
 }

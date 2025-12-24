@@ -62,7 +62,7 @@ const About = () => {
                 <div ref={headerRef} className={`scroll-hidden ${isHeaderVisible ? 'scroll-visible' : ''}`}>
                     <h2 style={styles.heading}>About Me</h2>
                     <img
-                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800"
+                        src="/profile.jpg"
                         alt="Portrait"
                         style={{ width: '100%', borderRadius: '24px', filter: 'grayscale(100%)', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}
                     />

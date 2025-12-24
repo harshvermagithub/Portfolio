@@ -419,17 +419,25 @@ img {
   }
 
   .hero-deck {
-    width: 260px;
-    height: 350px;
+    width: 340px;
+    /* Widened for better proportion */
+    height: 300px;
+    /* Reduced height to fix "tall" look */
     margin: 40px auto 80px;
   }
 
+  .hero-card {
+    width: 55%;
+    /* Widen individual cards */
+    left: 22.5%;
+  }
+
   .hero-card:nth-child(1) {
-    transform: rotate(-6deg) translate(-20px, 10px);
+    transform: rotate(-10deg) translate(-40px, 15px);
   }
 
   .hero-card:nth-child(2) {
-    transform: rotate(-3deg) translate(-10px, 5px);
+    transform: rotate(-5deg) translate(-20px, 5px);
   }
 
   .hero-card:nth-child(3) {
@@ -437,11 +445,11 @@ img {
   }
 
   .hero-card:nth-child(4) {
-    transform: rotate(3deg) translate(10px, 5px);
+    transform: rotate(5deg) translate(20px, 5px);
   }
 
   .hero-card:nth-child(5) {
-    transform: rotate(6deg) translate(20px, 10px);
+    transform: rotate(10deg) translate(40px, 15px);
   }
 
   .hero-pill {

@@ -1,20 +1,23 @@
-
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Work from './components/Work';
-import About from './components/About';
-import Contact from './components/Contact';
+import Home from './components/Home';
+import CertificationDetail from './components/CertificationDetail';
+import { useEffect } from 'react';
 
 function App() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <div className="app">
       <Navbar />
-      <main>
-        <Hero />
-        <Work />
-        <About />
-        <Contact />
-      </main>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/certification/:id" element={<CertificationDetail />} />
+      </Routes>
     </div>
   );
 }

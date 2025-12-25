@@ -156,9 +156,9 @@ const Hero = () => {
                 <div className="hero-pill blue">
                     @PrototypeAnalyst
                 </div>
-                <div className="hero-pill white">
+                <a href="https://www.instagram.com/harshvermaig" target="_blank" rel="noopener noreferrer" className="hero-pill white" style={{ textDecoration: 'none', color: 'inherit' }}>
                     @harshvermaig
-                </div>
+                </a>
             </div>
 
             <div className="slide-up" style={{ animationDelay: '0.5s', ...styles.bioCard }}>

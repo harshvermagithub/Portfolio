@@ -18,7 +18,7 @@ const Navbar = () => {
     // Scroll Spy Logic
     useEffect(() => {
         const handleScroll = () => {
-            const sections = ['home', 'work', 'about', 'contact'];
+            const sections = ['home', 'work', 'experience', 'about', 'stack', 'contact'];
             // Dynamic offset based on screen height
             // If near bottom of page, force 'contact'
             if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
@@ -91,7 +91,9 @@ const Navbar = () => {
     const navItems = [
         { id: 'home', label: 'Home', href: '#' },
         { id: 'work', label: 'Work', href: '#work' },
+        { id: 'experience', label: 'Experience', href: '#experience' },
         { id: 'about', label: 'About', href: '#about' },
+        { id: 'stack', label: 'Stack', href: '#stack' },
         { id: 'contact', label: 'Contact', href: '#contact' },
     ];
 

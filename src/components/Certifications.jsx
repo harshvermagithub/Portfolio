@@ -10,7 +10,7 @@ const CertificationCard = ({ cert, index }) => {
         <Link
             to={`/certification/${cert.id}`}
             ref={ref}
-            className={`glass-card certification-card scroll-hidden ${isVisible ? 'scroll-visible' : ''}`}
+            className={`certification-card scroll-hidden ${isVisible ? 'scroll-visible' : ''}`}
             style={{
                 transitionDelay: `${index * 0.1}s`,
                 padding: '32px',
@@ -85,18 +85,20 @@ const Certifications = () => {
     };
 
     return (
-        <section id="certifications" className="container" style={styles.section}>
-            <div ref={headerRef} className={`scroll-hidden ${isHeaderVisible ? 'scroll-visible' : ''}`}>
-                <h2 style={{ fontSize: 'clamp(32px, 5vw, 48px)', marginBottom: '16px' }}>Certifications</h2>
-                <p style={{ fontSize: '18px', color: 'var(--text-secondary)', maxWidth: '600px' }}>
-                    Continuous learning is the engine of my growth. Here are a few milestones from my journey.
-                </p>
-            </div>
+        <section id="certifications" className="container section-padding">
+            <div className="glass-card" style={{ padding: '48px', borderRadius: '32px' }}>
+                <div ref={headerRef} className={`scroll-hidden ${isHeaderVisible ? 'scroll-visible' : ''}`}>
+                    <h2 style={{ fontSize: 'clamp(32px, 5vw, 48px)', marginBottom: '16px' }}>Certifications</h2>
+                    <p style={{ fontSize: '18px', color: 'var(--text-secondary)', maxWidth: '600px' }}>
+                        Continuous learning is the engine of my growth. Here are a few milestones from my journey.
+                    </p>
+                </div>
 
-            <div style={styles.grid}>
-                {certificationsData.map((cert, index) => (
-                    <CertificationCard key={cert.id} cert={cert} index={index} />
-                ))}
+                <div style={styles.grid}>
+                    {certificationsData.map((cert, index) => (
+                        <CertificationCard key={cert.id} cert={cert} index={index} />
+                    ))}
+                </div>
             </div>
         </section>
     );

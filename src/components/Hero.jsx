@@ -161,7 +161,7 @@ const Hero = () => {
                 </a>
             </div>
 
-            <div className="slide-up" style={{ animationDelay: '0.5s', ...styles.bioCard }}>
+            <div className="bio-card slide-up" style={{ animationDelay: '0.5s', ...styles.bioCard }}>
                 <p style={styles.bio}>
                     {displayedSegments.map((segment, index) => {
                         if (segment.type === 'strong') {

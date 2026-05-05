@@ -94,9 +94,8 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background-size: 100% 100%;
-  background-attachment: scroll;
-  /* Static position with constant Color Cycle */
   animation: colorCycle 60s infinite linear;
+  will-change: filter;
 
   /* Mesh Gradient Background - Stronger Colors for Light Mode + New Hues (Teal, Orange, Pink) */
   background-image:
@@ -127,11 +126,7 @@ body::before {
 a {
   color: inherit;
   text-decoration: none;
-  transition: opacity 0.2s ease;
-}
-
-a:hover {
-  opacity: 0.7;
+  transition: color 0.2s ease;
 }
 
 h1,
@@ -155,10 +150,8 @@ img {
 /* Core Layout */
 .container {
   max-width: 1200px;
-  /* Slightly tighter container */
   margin: 0 auto;
   padding: 0 24px;
-  /* Increased padding to prevent edge cropping */
   width: 100%;
 }
 
@@ -257,7 +250,7 @@ img {
 
 /* Section Padding Utility */
 .section-padding {
-  padding: 120px 0;
+  padding: 160px 0;
   /* Removed border top */
 }
 
@@ -381,13 +374,29 @@ img {
   }
 }
 
+/* Bio Card Interaction */
+.bio-card {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.hero-deck:hover + .bio-card {
+  background: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1) !important;
+  transform: translateY(10px);
+}
+
+[data-theme='dark'] .hero-deck:hover + .bio-card {
+  background: rgba(15, 15, 15, 0.95) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
 /* Responsive Overrides */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
 
   .about-grid,
   .work-grid {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 48px;
   }
 
   .nav-dock {
@@ -397,7 +406,6 @@ img {
     max-width: 95%;
     flex-wrap: nowrap;
     overflow-x: auto;
-    /* Allow scroll if many items */
   }
 
   .nav-link {
@@ -410,25 +418,21 @@ img {
   }
 
   .section-padding {
-    padding: 80px 0;
+    padding: 100px 0;
   }
 
   .container {
     padding: 0 24px;
-    /* Ensure padding sticks on mobile */
   }
 
   .hero-deck {
     width: 340px;
-    /* Widened for better proportion */
     height: 300px;
-    /* Reduced height to fix "tall" look */
     margin: 40px auto 80px;
   }
 
   .hero-card {
     width: 55%;
-    /* Widen individual cards */
     left: 22.5%;
   }
 
@@ -477,30 +481,33 @@ img {
   }
 }
 
-/* Glass Card Utility */
 .glass-card {
   background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--border-soft);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateZ(0);
+  will-change: transform, box-shadow;
+}
+
+[data-theme='dark'] .glass-card {
+  background: rgba(20, 20, 20, 0.6);
 }
 
 .glass-card:hover {
   transform: translateY(-8px);
-  background: rgba(255, 255, 255, 0.6);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
-/* Project Card Specifics */
 .project-card {
   border-radius: 24px;
-  padding: 24px;
+  padding: 32px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-height: 280px;
+  justify-content: center;
+  min-height: 140px;
   position: relative;
   overflow: hidden;
 }
@@ -521,11 +528,12 @@ img {
 /* Scroll Animation Utility */
 .scroll-hidden {
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateY(40px) translateZ(0);
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 
 .scroll-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) translateZ(0);
 }

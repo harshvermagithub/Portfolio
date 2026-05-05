@@ -1,24 +1,26 @@
-
 import React from 'react';
+import { Link } from 'react-router-dom';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 
 const ProjectCard = ({ project, index }) => {
     const [ref, isVisible] = useScrollAnimation(0.1);
 
     return (
-        <div
+        <Link
+            to={`/work/${project.slug}`}
             ref={ref}
-            className={`glass-card project-card scroll-hidden ${isVisible ? 'scroll-visible' : ''}`}
-            style={{ transitionDelay: `${index * 0.1}s` }}
+            className={`project-card scroll-hidden ${isVisible ? 'scroll-visible' : ''}`}
+            style={{ 
+                transitionDelay: `${index * 0.1}s`,
+                textDecoration: 'none',
+                color: 'inherit',
+                display: 'block'
+            }}
         >
-            <div className="project-icon" style={{ backgroundColor: project.bgColor }}>
-                {project.iconEmoji}
-            </div>
-
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
-                    <h3 style={{ fontSize: '20px', fontWeight: 600, fontFamily: 'var(--font-serif)', margin: 0 }}>
-                        {project.name}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
+                    <h3 style={{ fontSize: '24px', fontWeight: 600, fontFamily: 'var(--font-serif)', margin: 0 }}>
+                        {project.title}
                     </h3>
                     <span style={{
                         fontSize: '12px',
@@ -31,11 +33,11 @@ const ProjectCard = ({ project, index }) => {
                         {project.year}
                     </span>
                 </div>
-                <p style={{ fontSize: '15px', color: 'var(--text-secondary)', margin: 0 }}>
+                <p style={{ fontSize: '15px', color: 'var(--text-secondary)', margin: 0, lineHeight: '1.6' }}>
                     {project.desc}
                 </p>
             </div>
-        </div>
+        </Link>
     );
 };
 
@@ -43,43 +45,24 @@ const Work = () => {
     const projects = [
         {
             id: 1,
-            name: 'MEA Platform',
-            desc: 'Prototype Analyst',
-            iconEmoji: '🚀',
-            bgColor: 'rgba(224, 247, 250, 0.5)',
-            year: 'Present'
+            slug: 'kim-jong-moon',
+            title: 'Kim Jong Moon',
+            desc: 'Design Lead for a viral Web3 ecosystem. Delivered a high-conversion V2 dashboard, 250+ generative NFT traits, and community branding assets.',
+            year: '2021'
         },
         {
             id: 2,
-            name: 'AI Foundation',
-            desc: 'AI Dev Analyst',
-            iconEmoji: '🤖',
-            bgColor: 'rgba(243, 229, 245, 0.5)',
-            year: '2023'
+            slug: 'kim-jong-moon-stickers',
+            title: 'KJM Sticker Pack',
+            desc: 'High-fidelity community assets for Telegram/Discord. Designed 36+ satirical stickers that established a unique visual language for KJM.',
+            year: '2021'
         },
         {
             id: 3,
-            name: 'Simplilearn',
-            desc: 'Success Manager',
-            iconEmoji: '🎓',
-            bgColor: 'rgba(232, 245, 233, 0.5)',
-            year: '2023'
-        },
-        {
-            id: 4,
-            name: 'Ecoenergy',
-            desc: 'Project Engineer',
-            iconEmoji: '⚡',
-            bgColor: 'rgba(255, 243, 224, 0.5)',
-            year: '2022'
-        },
-        {
-            id: 5,
-            name: 'Abstraction',
-            desc: 'SDE Intern',
-            iconEmoji: '💻',
-            bgColor: 'rgba(227, 242, 253, 0.5)',
-            year: '2022'
+            slug: 'dogeverse',
+            title: 'Dogeverse Web3',
+            desc: 'Cinematic UI/UX for a story-driven NFT metaverse. Focused on high-contrast visuals and narrative-led conversion flows.',
+            year: '2021'
         }
     ];
 
@@ -94,18 +77,20 @@ const Work = () => {
 
     return (
         <section id="work" className="container section-padding">
-            <div
-                ref={headerRef}
-                style={headerStyles}
-                className={`scroll-hidden ${isHeaderVisible ? 'scroll-visible' : ''}`}
-            >
-                <h2 style={{ fontSize: 'clamp(32px, 5vw, 48px)' }}>Selected Work</h2>
-            </div>
+            <div className="glass-card" style={{ padding: '48px', borderRadius: '32px' }}>
+                <div
+                    ref={headerRef}
+                    style={headerStyles}
+                    className={`scroll-hidden ${isHeaderVisible ? 'scroll-visible' : ''}`}
+                >
+                    <h2 style={{ fontSize: 'clamp(32px, 5vw, 48px)' }}>Work</h2>
+                </div>
 
-            <div className="work-grid">
-                {projects.map((project, index) => (
-                    <ProjectCard key={project.id} project={project} index={index} />
-                ))}
+                <div className="work-grid">
+                    {projects.map((project, index) => (
+                        <ProjectCard key={project.id} project={project} index={index} />
+                    ))}
+                </div>
             </div>
         </section>
     );

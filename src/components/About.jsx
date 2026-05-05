@@ -58,51 +58,51 @@ const About = () => {
 
     return (
         <section id="about" className="container section-padding">
-            <div className="about-grid">
-                <div ref={headerRef} className={`scroll-hidden ${isHeaderVisible ? 'scroll-visible' : ''}`}>
-                    <h2 style={styles.heading}>About Me</h2>
-                    <img
-                        src="/profile.jpg"
-                        alt="Portrait"
-                        style={{ width: '100%', borderRadius: '24px', filter: 'grayscale(100%)', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}
-                    />
-                </div>
+            <div className="glass-card" style={{ padding: '48px', borderRadius: '32px' }}>
+                <div className="about-grid">
+                    <div ref={headerRef} className={`scroll-hidden ${isHeaderVisible ? 'scroll-visible' : ''}`}>
+                        <h2 style={styles.heading}>About Me</h2>
+                        <div style={{ textAlign: 'center' }}>
+                            <img
+                                src="/profile.jpg"
+                                alt="Portrait"
+                                style={{ width: '100%', maxWidth: '400px', borderRadius: '24px', filter: 'grayscale(100%)', boxShadow: '0 20px 40px rgba(0,0,0,0.1)', display: 'inline-block' }}
+                            />
+                        </div>
+                    </div>
 
-                <div
-                    ref={contentRef}
-                    style={{ paddingTop: '64px' }}
-                    className={`scroll-hidden ${isContentVisible ? 'scroll-visible' : ''}`}
-                >
-                    <p style={styles.bio}>
-                        I am a Product Department Prototype Analyst with a background in Information Technology.
-                        I transitioned to a founding member role, establishing vision and strategic direction for product-market fit.
-                        I have driven 5x+ team growth and championed user-centric methodologies to transform organizational operations.
-                    </p>
+                    <div style={{ paddingTop: '16px' }}>
+                        <p style={styles.bio}>
+                            I am a Product Department Prototype Analyst with a background in Information Technology.
+                            I transitioned to a founding member role, establishing vision and strategic direction for product-market fit.
+                            I have driven 5x+ team growth and championed user-centric methodologies to transform organizational operations.
+                        </p>
 
-                    <a
-                        href={resumePdf}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                            display: 'inline-block',
-                            marginBottom: '48px',
-                            fontSize: '16px',
-                            textDecoration: 'underline',
-                            textUnderlineOffset: '4px',
-                            fontWeight: 500
-                        }}
-                    >
-                        View Full Resume
-                    </a>
+                        <a
+                            href={resumePdf}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                                display: 'inline-block',
+                                marginBottom: '48px',
+                                fontSize: '16px',
+                                textDecoration: 'underline',
+                                textUnderlineOffset: '4px',
+                                fontWeight: 500
+                            }}
+                        >
+                            View Full Resume
+                        </a>
 
-                    <h3 style={{ fontSize: '14px', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '24px', color: 'var(--text-secondary)' }}>
-                        Core Expertise
-                    </h3>
-                    <ul style={styles.list}>
-                        {services.map((service, index) => (
-                            <ExpertiseItem key={index} text={service} index={index} />
-                        ))}
-                    </ul>
+                        <h3 style={{ fontSize: '14px', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '24px', color: 'var(--text-secondary)' }}>
+                            Core Expertise
+                        </h3>
+                        <ul style={styles.list}>
+                            {services.map((service, index) => (
+                                <ExpertiseItem key={index} text={service} index={index} />
+                            ))}
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>

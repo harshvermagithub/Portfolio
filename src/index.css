@@ -94,8 +94,7 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background-size: 100% 100%;
-  animation: colorCycle 60s infinite linear;
-  will-change: filter;
+  will-change: transform;
 
   /* Mesh Gradient Background - Stronger Colors for Light Mode + New Hues (Teal, Orange, Pink) */
   background-image:
@@ -113,15 +112,7 @@ body::before {
 
 
 
-@keyframes colorCycle {
-  0% {
-    filter: hue-rotate(0deg);
-  }
 
-  100% {
-    filter: hue-rotate(360deg);
-  }
-}
 
 a {
   color: inherit;

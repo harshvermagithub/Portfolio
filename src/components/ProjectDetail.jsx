@@ -402,6 +402,12 @@ const ProjectDetail = () => {
     const [selectedSubProject, setSelectedSubProject] = useState(null);
 
     useEffect(() => {
+        if (selectedSubProject) {
+            window.scrollTo({ top: 0, behavior: 'instant' });
+        }
+    }, [selectedSubProject]);
+
+    useEffect(() => {
         window.scrollTo(0, 0);
         // Reset lock state when changing projects
         setIsUnlocked(false);

@@ -149,7 +149,49 @@ const ProjectDetail = () => {
                     id: 'claims-operations',
                     title: 'Claims Operations',
                     description: 'End-to-end claims lifecycle management and automation.',
-                    content: { overview: 'Streamlining the claims intake and settlement process through automated data extraction and validation.' }
+                    content: { 
+                        overview: 'A comprehensive module designed to automate the intake, validation, and settlement of commercial insurance claims.',
+                        keyFindings: [
+                            'Automated first notice of loss (FNOL) extraction.',
+                            'Fraud detection integration using pattern matching.',
+                            'Dynamic authority limit checks for instant approvals.',
+                            'Integration with external loss adjustor APIs.'
+                        ],
+                        sections: [
+                            {
+                                title: 'Automated FNOL',
+                                body: 'The system uses OCR and NLP to extract claim details from emails and scanned documents, populating the claims management system with 95% accuracy.'
+                            },
+                            {
+                                title: 'Settlement Workflow',
+                                body: 'Streamlined approval routes for payments, ensuring that claims within the operator\'s authority are settled in minutes rather than days.'
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 'triage',
+                    title: 'Triage',
+                    description: 'Intelligent submission sorting and prioritization.',
+                    content: { 
+                        overview: 'The Triage module acts as the "brain" of the submission pipeline, automatically categorizing and assigning incoming business.',
+                        keyFindings: [
+                            'Machine learning based risk categorization.',
+                            'Automatic workload balancing across underwriting teams.',
+                            'High-priority "Fast-Track" lane for low-complexity risks.',
+                            'Real-time submission health monitoring.'
+                        ],
+                        sections: [
+                            {
+                                title: 'Submission Routing',
+                                body: 'By analyzing historical data, the Triage module predicts the likelihood of conversion and routes submissions to the underwriter best suited for the risk profile.'
+                            },
+                            {
+                                title: 'Risk Scoring',
+                                body: 'An automated scoring engine that evaluates submissions against current risk appetite, flagging out-of-appetite items instantly.'
+                            }
+                        ]
+                    }
                 },
                 { id: 'classify-my-data', title: 'Classify my data', description: 'AI-driven document classification and sorting.' },
                 { id: 'finance-operations', title: 'Finance Operations', description: 'Credit control and financial reporting workflows.' },
@@ -157,10 +199,68 @@ const ProjectDetail = () => {
                 { id: 'operations-dashboard', title: 'Operations Dashboard', description: 'High-level operational metrics and team management.' },
                 { id: 'qa-tool', title: 'QA Tool', description: 'Automated quality assurance for insurance documentation.' },
                 { id: 'sov-config', title: 'SOV Configuration', description: 'Statement of Values configuration and management.' },
-                { id: 'summarize-data', title: 'Summarize my data', description: 'AI-powered summarization of complex policy documents.' },
-                { id: 'triage', title: 'Triage', description: 'Intelligent submission sorting and prioritization.' },
-                { id: 'underwriting', title: 'Underwriting', description: 'Core underwriting workbench and decision support.' },
+                { 
+                    id: 'summarize-data', 
+                    title: 'Summarize my data', 
+                    description: 'AI-powered summarization of complex policy documents.',
+                    content: {
+                        overview: 'A tool that distills hundreds of pages of insurance policy documents into a single, high-impact executive summary.',
+                        keyFindings: [
+                            'AI-driven entity extraction for policy limits and exclusions.',
+                            'Automated risk appetite comparison.',
+                            'Context-aware summaries for Brokers and Underwriters.',
+                            'Instant translation for international placements.'
+                        ],
+                        sections: [
+                            {
+                                title: 'Document Distillation',
+                                body: 'The AI analyzes complex legal and insurance jargon to surface the core terms of the policy, allowing professionals to review a document in 2 minutes that previously took 45.'
+                            }
+                        ]
+                    }
+                },
+                { 
+                    id: 'underwriting', 
+                    title: 'Underwriting', 
+                    description: 'Core underwriting workbench and decision support.',
+                    content: {
+                        overview: 'The primary workspace for commercial underwriters, integrating risk data, pricing engines, and document management.',
+                        keyFindings: [
+                            'Integrated pricing and rating engines.',
+                            '360-degree view of the submission risk profile.',
+                            'Automated referral workflows for over-limit risks.',
+                            'Collaborative notes and decision history.'
+                        ],
+                        sections: [
+                            {
+                                title: 'The Underwriter Workbench',
+                                body: 'A unified interface that eliminates the need to switch between multiple legacy systems. Everything from risk assessment to quote issuance happens in a single, high-fidelity view.'
+                            }
+                        ]
+                    }
+                },
                 { id: 'underwriting-moonrock', title: 'Underwriting Moonrock', description: 'Specialized underwriting module for Moonrock partners.' }
+            ]
+        },
+        'carrier-global': {
+            title: 'Carrier Global',
+            subtitle: 'Industrial UI & Workflow Optimization (2020)',
+            overview: 'As a Graduate Engineer Trainee at Carrier, I bridged the gap between mechanical engineering and digital interface design. I focused on optimizing internal technical workflows and designing intuitive interfaces for HVAC system configuration tools, ensuring that complex engineering data was accessible to non-technical stakeholders.',
+            sections: [
+                {
+                    title: 'Digital Transformation',
+                    content: 'Spearheaded the transition from legacy paper-based workflows to digital configuration tools, reducing engineering hand-off errors by 30%.'
+                },
+                {
+                    title: 'Systems Thinking',
+                    content: 'Applied engineering principles to UI design, creating a component library for technical diagrams and system schematics that standardized Carrier’s internal toolset.'
+                }
+            ],
+            role: 'Graduate Engineer Trainee',
+            timeline: '2020',
+            tools: ['AutoCAD', 'Figma', 'System Architecture'],
+            images: [
+                { src: '/src/import/Carrier/Screenshot 2026-05-04 at 16.43.43.png', caption: 'Technical Workflow Optimization' }
             ]
         }
     };
@@ -198,7 +298,7 @@ const ProjectDetail = () => {
 
     if (project.isLocked && !isUnlocked) {
         return (
-            <div style={{ minHeight: '100vh', paddingTop: '120px', backgroundColor: 'var(--bg-primary)' }}>
+            <div style={{ minHeight: '100vh', paddingTop: '120px', backgroundColor: 'transparent' }}>
                 <div className="container">
                     <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: 'var(--text-secondary)', textDecoration: 'none', marginBottom: '40px' }}>
                         <ArrowLeft size={20} /> Back to Portfolio
@@ -263,7 +363,7 @@ const ProjectDetail = () => {
     }
 
     return (
-        <div style={{ minHeight: '100vh', paddingTop: '120px', paddingBottom: '80px', backgroundColor: 'var(--bg-primary)' }}>
+        <div style={{ minHeight: '100vh', paddingTop: '120px', paddingBottom: '80px', backgroundColor: 'transparent' }}>
             <div className="container">
                 <button 
                     onClick={() => selectedSubProject ? setSelectedSubProject(null) : null}

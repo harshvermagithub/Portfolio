@@ -73,6 +73,13 @@ const Work = () => {
             title: 'mea Insurance',
             desc: 'End-to-end UX architecture for complex insurtech platforms. Streamlining operational data flows and AI-driven automation. (Password Protected)',
             year: '2023'
+        },
+        {
+            id: 5,
+            slug: 'carrier-global',
+            title: 'Carrier Global',
+            desc: 'Industrial UI & Workflow Optimization. Bridging mechanical engineering and digital interface design for HVAC systems.',
+            year: '2020'
         }
     ];
 

@@ -193,12 +193,106 @@ const ProjectDetail = () => {
                         ]
                     }
                 },
-                { id: 'classify-my-data', title: 'Classify my data', description: 'AI-driven document classification and sorting.' },
-                { id: 'finance-operations', title: 'Finance Operations', description: 'Credit control and financial reporting workflows.' },
-                { id: 'new-business', title: 'New Business Configuration', description: 'Streamlining the intake of new insurance submissions.' },
-                { id: 'operations-dashboard', title: 'Operations Dashboard', description: 'High-level operational metrics and team management.' },
-                { id: 'qa-tool', title: 'QA Tool', description: 'Automated quality assurance for insurance documentation.' },
-                { id: 'sov-config', title: 'SOV Configuration', description: 'Statement of Values configuration and management.' },
+                {
+                    id: 'classify-my-data',
+                    title: 'Classify my data',
+                    description: 'AI-driven document classification and sorting.',
+                    content: {
+                        overview: 'An intelligent gateway that automatically identifies and categorizes incoming insurance documents (Policies, Claims, SOVs) before routing them to the correct operational workflow.',
+                        keyFindings: [
+                            '98% accuracy in document type identification.',
+                            'Automated multi-document splitting and merging.',
+                            'NLP-driven intent recognition for email attachments.',
+                            'Real-time feedback loop for model retraining.'
+                        ],
+                        sections: [
+                            {
+                                title: 'The Classification Engine',
+                                body: 'Using a combination of visual layout analysis and text-based NLP, the module identifies exactly what a document is. A 50-page PDF can be split into individual policy sections and claims forms in seconds.'
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 'finance-operations',
+                    title: 'Finance Operations',
+                    description: 'Credit control and financial reporting workflows.',
+                    content: {
+                        overview: 'A specialized dashboard for insurance finance professionals to manage premiums, commissions, and credit control.',
+                        keyFindings: [
+                            'Automated premium reconciliation.',
+                            'Commission tracking and leakage detection.',
+                            'Real-time credit control status across the book.',
+                            'Direct integration with core accounting systems.'
+                        ],
+                        sections: [
+                            {
+                                title: 'Persona: Credit Controller',
+                                body: 'The interface surfaces overdue premiums and commission discrepancies, allowing controllers to manage exceptions without manual spreadsheet tracking.'
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 'new-business',
+                    title: 'New Business Configuration',
+                    description: 'Streamlining the intake of new insurance submissions.',
+                    content: {
+                        overview: 'A guided workflow for setting up and configuring new insurance business lines, focusing on speed-to-market and data quality.',
+                        keyFindings: [
+                            'Dynamic form builder for custom submission fields.',
+                            'Rule-based validation for mandatory risk data.',
+                            'Instant "Declination" routing for out-of-appetite risks.',
+                            'Template-based setup for common lines of business.'
+                        ],
+                        sections: [
+                            {
+                                title: 'Submission Lifecycle',
+                                body: 'From the moment an inquiry hits the system, the New Business module ensures all required data points are present, reducing back-and-forth between brokers and underwriters.'
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 'qa-tool',
+                    title: 'QA Tool',
+                    description: 'Automated quality assurance for insurance documentation.',
+                    content: {
+                        overview: 'A dual-pane workspace designed to resolve AI extraction conflicts and ensure 100% data integrity before final processing.',
+                        keyFindings: [
+                            'Side-by-side document and data comparison.',
+                            'Contextual Anchoring: Click data to see source PDF location.',
+                            'Discrepancy flagging for "Need Review" entities.',
+                            'Audit trail for every data point change.'
+                        ],
+                        sections: [
+                            {
+                                title: 'Conflict Resolution',
+                                body: 'The workspace allows analysts to compare extraction results against the SOP or alternative sources, selecting the most accurate data point with a single click.'
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 'sov-config',
+                    title: 'SOV Configuration',
+                    description: 'Statement of Values configuration and management.',
+                    content: {
+                        overview: 'An industrial-grade tool for extracting and mapping complex spreadsheet data from multi-location Schedules of Values (SOV).',
+                        keyFindings: [
+                            'Dynamic entity mapping for SOV columns.',
+                            'Technical rule configuration (Data Types, Transformations).',
+                            'High-fidelity preview matrix for data validation.',
+                            'Batch processing for large location schedules.'
+                        ],
+                        sections: [
+                            {
+                                title: 'Configuration Workflow',
+                                body: 'Underwriters use a 3-step wizard to build extraction templates: Entity Selection → Rule Configuration → Preview & Publish.'
+                            }
+                        ]
+                    }
+                },
                 { 
                     id: 'summarize-data', 
                     title: 'Summarize my data', 
@@ -239,7 +333,46 @@ const ProjectDetail = () => {
                         ]
                     }
                 },
-                { id: 'underwriting-moonrock', title: 'Underwriting Moonrock', description: 'Specialized underwriting module for Moonrock partners.' }
+                {
+                    id: 'operations-dashboard',
+                    title: 'Operations Dashboard',
+                    description: 'High-level operational metrics and team management.',
+                    content: {
+                        overview: 'An executive-level command center providing real-time visibility into the entire submission and claims pipeline.',
+                        keyFindings: [
+                            'Real-time SLA monitoring and bottleneck detection.',
+                            'Team capacity and workload visualization.',
+                            'AI impact metrics (Extraction Accuracy vs. Manual Effort).',
+                            'Drill-down capabilities from global view to specific policies.'
+                        ],
+                        sections: [
+                            {
+                                title: 'Executive Visibility',
+                                body: 'The dashboard surfaces critical business health indicators, allowing operations leads to reallocate resources in real-time to meet peak demand or clear backlogs.'
+                            }
+                        ]
+                    }
+                },
+                { 
+                    id: 'underwriting-moonrock', 
+                    title: 'Underwriting Moonrock', 
+                    description: 'Specialized underwriting module for Moonrock partners.',
+                    content: {
+                        overview: 'A bespoke underwriting workbench developed specifically for Moonrock insurance partners, focusing on specialized risk profiles and proprietary rating logic.',
+                        keyFindings: [
+                            'Custom risk assessment algorithms.',
+                            'Partner-specific white-labeling and branding.',
+                            'Real-time pricing feedback for brokers.',
+                            'Automated bordereau reporting.'
+                        ],
+                        sections: [
+                            {
+                                title: 'Specialized Risk Analysis',
+                                body: 'The Moonrock module handles high-complexity risks that standard engines cannot, using advanced data models and human-in-the-loop validation.'
+                            }
+                        ]
+                    }
+                }
             ]
         },
         'carrier-global': {

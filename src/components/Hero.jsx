@@ -20,7 +20,7 @@ const Hero = () => {
             alignItems: 'center',
             textAlign: 'center',
             paddingTop: '160px', /* Increased top padding to clear Navbar */
-            paddingBottom: '80px',
+            paddingBottom: '40px',
             overflow: 'visible' // Allow animation overflow
         },
         h1: {

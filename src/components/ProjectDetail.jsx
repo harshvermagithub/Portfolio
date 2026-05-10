@@ -659,9 +659,9 @@ const ProjectDetail = () => {
                         </>
                     ) : (
                         /* Confluence-style Detail View */
-                        <div style={{ display: 'flex', minHeight: '80vh', background: 'white' }}>
+                        <div className="module-layout">
                             {/* Sidebar */}
-                            <div style={{ width: '300px', borderRight: '1px solid var(--border-soft)', padding: '40px 24px', background: '#f9f9f9', overflowY: 'auto' }}>
+                            <div className="module-sidebar">
                                 <h5 style={{ fontSize: '12px', textTransform: 'uppercase', color: 'var(--text-secondary)', marginBottom: '24px', letterSpacing: '1px' }}>Modules</h5>
                                 {project.subProjects.map((sub, idx) => (
                                     <div 
@@ -684,7 +684,7 @@ const ProjectDetail = () => {
                             </div>
 
                             {/* Content Area */}
-                            <div style={{ flex: 1, padding: '60px 80px', overflowY: 'auto' }}>
+                            <div className="module-content">
                                 <div style={{ marginBottom: '48px' }}>
                                     <span style={{ fontSize: '13px', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '1px' }}>MEA Insurance / Modules</span>
                                     <h1 style={{ fontSize: '48px', marginTop: '16px', marginBottom: '24px' }}>{selectedSubProject.title}</h1>
